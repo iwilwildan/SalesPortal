@@ -1,0 +1,156 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <div class="alert alert-info" role="alert">
+            <h1>Sales Data</h1>
+        </div>
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-success button-new-sales">Add Sales Record</button>
+
+            <button type="button" class="btn btn-info button-filter">Set Filters</button>
+
+        </div>
+
+        <table class="table table-striped" id="tblSales">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Country</th>
+                    <th>State/Region</th>
+                    <th>City</th>
+                    <th>Date and Time of Sales</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    @*<th></th> Action buttons*@
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <!-- Pagination controls -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item">
+                    <button class="page-link first" aria-label="First">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                    </button>
+                </li>
+                <li class="page-item">
+                    <button class="page-link prev" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </button>
+                </li>
+                <li class="page-item disabled">
+                    <span class="page-link">Page <span id="currentPage">1</span></span>
+                </li>
+                <li class="page-item">
+                    <button class="page-link next" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+@*modal for adding new record*@
+<div class="modal fade" id="modalSales" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addSaleModalTitle">Add New Sales</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Customer Name</label>
+                    <input type="text" class="form-control" id="txtCustomerName">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Country</label>
+                    <select class="form-select" id="ddlCountry">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Region</label>
+                    <select class="form-select" id="ddlRegion">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">City</label>
+                    <select class="form-select" id="ddlCity">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Sale Date and Time</label>
+                    <input type="datetime-local" class="form-control" id="txtSaleDateTime">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Product</label>
+                    <select class="form-select" id="ddlProduct">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="txtQuantity">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-save-sale">Add Sales</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*modal for filter*@
+<div class="modal fade" id="modalFilters" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addSaleModalTitle">Filters</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Sales Date Time</label>
+                    <div class="input-group mb-3">
+                        <input type="datetime-local" class="form-control" id="startDate" aria-label="Date From">
+                        <span class="input-group-text">-</span>
+                        <input type="datetime-local" class="form-control" id="endDate" aria-label="Date To">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Country</label>
+                    <select class="form-select" multiple size="3" id="ddlCountryFilter">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Region</label>
+                    <select class="form-select" id="ddlRegionFilter">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">City</label>
+                    <select class="form-select" id="ddlCityFilter">
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-clear-filter">Clear Fillters</button>
+                <button type="button" class="btn btn-primary btn-apply-filter">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+<script src="~/js/Index.js"></script>
+    }
